@@ -19,11 +19,11 @@ float eh;
 float erk;
 
 void setup() {
-  size(550,450);
+  size(550, 450);
   background(0);
 
   stroke(255);
-  line(0, height/2, width, height/2);
+  line(0, height / 2, width, height / 2);
 
   x = 0;
   y = 1;
@@ -33,8 +33,7 @@ void setup() {
   step = 0;
 }
 
-float f(float x, float y)
-{
+float f(float x, float y) {
   float val;
 
   // y′ = x + 2y
@@ -49,17 +48,17 @@ void draw() {
 
   noStroke();
 
-  y_eul += h*f(x, y_eul);
+  y_eul += h * f(x, y_eul);
 
-  heun_k1 = h*f(x, y_heun);
-  heun_k2 = h*f(x+h, y_heun + heun_k1);
-  y_heun += (heun_k1 + heun_k2)/2;
+  heun_k1 = h * f(x, y_heun);
+  heun_k2 = h * f(x + h, y_heun + heun_k1);
+  y_heun += (heun_k1 + heun_k2) / 2;
 
-  k1 = h*f(x, y_rk4);
-  k2 = h*f(x+h/2, y_rk4 + k1/2);
-  k3 = h*f(x+h/2, y_rk4 + k2/2);
-  k4 = h*f(x+h, y_rk4 + k3);
-  y_rk4 += (k1 + 2*(k2+k3) + k4)/6;
+  k1 = h * f(x, y_rk4);
+  k2 = h * f(x + h / 2, y_rk4 + k1 / 2);
+  k3 = h * f(x + h / 2, y_rk4 + k2 / 2);
+  k4 = h * f(x + h, y_rk4 + k3);
+  y_rk4 += (k1 + 2 * (k2 + k3) + k4) / 6;
 
   x += h;
 
@@ -68,17 +67,18 @@ void draw() {
   // y = x*x/2;
   y = exp(x);
 
-  ee = y_eul-y;
-  eh = y_heun-y;
-  erk = y_rk4-y;
-  print("x: " + x + " y: " + y + " e: " + ee + " h: " + eh + " rk: " + erk + "\n");
+  ee = y_eul - y;
+  eh = y_heun - y;
+  erk = y_rk4 - y;
+  print("x: " + x + " y: " + y + " e: " + ee + " h: " + eh + " rk: " + erk +
+        "\n");
 
   stroke(255); //<>//
-  point(step, height/2-ee);
-  stroke(255,0,0);
-  point(step, height/2-eh);
-  stroke(0,255,0);
-  point(step, height/2-erk);
+  point(step, height / 2 - ee);
+  stroke(255, 0, 0);
+  point(step, height / 2 - eh);
+  stroke(0, 255, 0);
+  point(step, height / 2 - erk);
 
   step++; //<>//
 }

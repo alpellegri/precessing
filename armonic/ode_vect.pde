@@ -23,7 +23,7 @@ class OdeSolver_Vect {
 
     return y;
   }
-  
+
   float[] heun(float x0, float[] y0, float h)
   {
     int i;
@@ -47,7 +47,7 @@ class OdeSolver_Vect {
 
     return y;
   }
-  
+
   float[] rk4(float x0, float[] y0, float h)
   {
     int i;
